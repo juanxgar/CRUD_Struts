@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <package name="user" namespace="/user" extends="struts-default">
+        
+        <action name="users" method="getAllUsers" class="action.UserAction">
+            <result name="success">/usuario/users.jsp</result>
+        </action>
+        
+        
+        <action name="registerform" method="setButtonMessageRegisterForm" class="action.UserAction">
+            <result>/usuario/register.jsp</result>
+        </action>
+        <action name="register" method="UserRegister" class="action.UserAction">
+            <result name="success" type="dispatcher">/usuario/success.jsp</result>
+            <result name="error">/usuario/error.jsp</result>
+        </action>
+        
+        
+        <action name="editform" method="getOneUser" class="action.UserAction">
+            <result name="success">/usuario/register.jsp</result>
+            <result name="error">/usuario/error.jsp</result>
+        </action>
+        <action name="edit" method="updateUser" class="action.UserAction">
+            <result name="success" type="dispatcher">/usuario/success.jsp</result>
+            <result name="error">/usuario/error.jsp</result>
+        </action>
+        <action name="delete" method="deleteUser" class="action.UserAction">
+            <interceptor-ref name="completeStack"/>
+              <interceptor-ref name="execAndWait">
+                <param name="delay">3000</param>
+                <param name="delaySleepInterval">2000</param>
+            </interceptor-ref>
+            <result name="success" type="redirectAction">users</result>
+            <result name="error">/usuario/error.jsp</result>
+        </action>
+        
+    </package>
+</struts>

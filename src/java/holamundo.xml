@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<!DOCTYPE struts PUBLIC
+        "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+        "http://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+    <!-- Si se le agrega namespace, la ruts debe de tener ese namespace antes de la acción-->
+    <!--No es necesario agregar el .action al final de la accion-->
+    <package name="holamundo" namespace="/holamundo" extends="struts-default">
+        <action name="listar" class="holamundo.HolaMundo">
+            <result name="success">/holamundo/HolaMundo.jsp</result>
+        </action>
+        <!-- Esto se puede hacer de dos maneras. Una es directamente pasar las acciones-->
+        <action name="struts" method="struts" class="holamundo.HolaMundoStrutsController">
+            <result name="success">/holamundo/HolaMundoStruts.jsp</result>
+        </action>
+        <action name="struts2" method="struts2" class="holamundo.HolaMundoStrutsController">
+            <result name="success">/holamundo/HolaMundoStruts2.jsp</result>
+        </action>
+        
+        <!--O hacerlo de manera iterativa usando los WildCards
+        Aunque este Wilcard no me funciono correctamente. Revisar-->
+        <!--<action name="*" method="{1}" class="holamundo.HolaMundoStrutsController">
+            <result>/holamundo/{1}.jsp</result>
+            <allowed-methods>struts1, struts2</allowed-methods>
+        </action>-->
+        
+        
+    </package>
+</struts>
+
